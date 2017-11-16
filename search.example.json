@@ -1,0 +1,103 @@
+{
+   "took": 25,
+   "timed_out": false,
+   "_shards": {
+      "total": 1,
+      "successful": 1,
+      "skipped" : 0,
+      "failed": 0
+   },
+   "hits": {
+      "total": 4,
+      "max_score": 0.5093388,
+      "hits": ["example"]
+   },
+   "profile": {
+     "shards": [
+        {
+           "id": "[2aE02wS1R8q_QFnYu6vDVQ][twitter][0]",
+           "searches": [
+              {
+                 "query": [
+                    {
+                       "type": "BooleanQuery",
+                       "description": "message:message message:number",
+                       "time_in_nanos": "1873811",
+                       "breakdown": {
+                          "score": 51306,
+                          "score_count": 4,
+                          "build_scorer": 2935582,
+                          "build_scorer_count": 1,
+                          "match": 0,
+                          "match_count": 0,
+                          "create_weight": 919297,
+                          "create_weight_count": 1,
+                          "next_doc": 53876,
+                          "next_doc_count": 5,
+                          "advance": 0,
+                          "advance_count": 0
+                       },
+                       "children": [
+                          {
+                             "type": "TermQuery",
+                             "description": "message:message",
+                             "time_in_nanos": "391943",
+                             "breakdown": {
+                                "score": 28776,
+                                "score_count": 4,
+                                "build_scorer": 784451,
+                                "build_scorer_count": 1,
+                                "match": 0,
+                                "match_count": 0,
+                                "create_weight": 1669564,
+                                "create_weight_count": 1,
+                                "next_doc": 10111,
+                                "next_doc_count": 5,
+                                "advance": 0,
+                                "advance_count": 0
+                             }
+                          },
+                          {
+                             "type": "TermQuery",
+                             "description": "message:number",
+                             "time_in_nanos": "210682",
+                             "breakdown": {
+                                "score": 4552,
+                                "score_count": 4,
+                                "build_scorer": 42602,
+                                "build_scorer_count": 1,
+                                "match": 0,
+                                "match_count": 0,
+                                "create_weight": 89323,
+                                "create_weight_count": 1,
+                                "next_doc": 2852,
+                                "next_doc_count": 5,
+                                "advance": 0,
+                                "advance_count": 0
+                             }
+                          }
+                       ]
+                    }
+                 ],
+                 "rewrite_time": 51443,
+                 "collector": [
+                    {
+                       "name": "CancellableCollector",
+                       "reason": "search_cancelled",
+                       "time_in_nanos": "304311",
+                       "children": [
+                         {
+                           "name": "SimpleTopScoreDocCollector",
+                           "reason": "search_top_hits",
+                           "time_in_nanos": "32273"
+                         }
+                       ]
+                    }
+                 ]
+              }
+           ],
+           "aggregations": []
+        }
+     ]
+   }
+}
