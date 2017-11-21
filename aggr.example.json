@@ -1,0 +1,57 @@
+{
+  "profile" : {
+    "shards" : [
+      {
+        "aggregations" : [
+          {
+            "type" : "LongTermsAggregator",
+            "description" : "my_scoped_agg",
+            "time_in_nanos" : 195386,
+            "breakdown" : {
+              "reduce" : 0,
+              "build_aggregation" : 81171,
+              "build_aggregation_count" : 1,
+              "initialize" : 22753,
+              "initialize_count" : 1,
+              "reduce_count" : 0,
+              "collect" : 91456,
+              "collect_count" : 4
+            }
+          },
+          {
+            "type" : "GlobalAggregator",
+            "description" : "my_global_agg",
+            "time_in_nanos" : 190430,
+            "breakdown" : {
+              "reduce" : 0,
+              "build_aggregation" : 59990,
+              "build_aggregation_count" : 1,
+              "initialize" : 29619,
+              "initialize_count" : 1,
+              "reduce_count" : 0,
+              "collect" : 100815,
+              "collect_count" : 4
+            },
+            "children" : [
+              {
+                "type" : "LongTermsAggregator",
+                "description" : "my_level_agg",
+                "time_in_nanos" : 160329,
+                "breakdown" : {
+                  "reduce" : 0,
+                  "build_aggregation" : 55712,
+                  "build_aggregation_count" : 1,
+                  "initialize" : 10559,
+                  "initialize_count" : 1,
+                  "reduce_count" : 0,
+                  "collect" : 94052,
+                  "collect_count" : 4
+                }
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
