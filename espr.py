@@ -25,6 +25,7 @@ def parse_stdin(data):
 
     return by_shard
 
+
 def tree_to_list(head):
     # simple stack based dfs to create a
     # printable list, nothing fancy
@@ -52,15 +53,28 @@ def tree_to_list(head):
     return nodes
 
 
-def print_node(node):
-    print('{} > {} {} ms'.format(
-        node.get('depth', 0)*'    ',
+def print_node(node, verbose=False):
+    INDENT = '   '
+    depth = node.get('depth', 0)
+
+    print('{}> {} {} ms'.format(
+        depth*INDENT,
         node.get('type'),
         int(node.get('time_in_nanos'))/1000
     ))
 
+    # optional breakdown
+    breakdown = node.get('breakdown')
+    if verbose and breakdown:
+        for key, value in breakdown.items():
+            print('{} {}: {}'.format(
+                (depth)*INDENT,
+                key,
+                value
+            ))
 
-def display(by_shard):
+
+def display(by_shard, verbose=False):
     for s in by_shard:
         print('Shard: {0}'.format(s.get('id')))
 
@@ -72,23 +86,29 @@ def display(by_shard):
                 for q in s['query']:
                     ordered_nodes = tree_to_list(q)
                     for n in ordered_nodes:
-                        print_node(n)
+                        print_node(n, verbose=verbose)
 
         aggregations = s.get('aggregations')
         if aggregations:
             for a in aggregations:
                 ordered_nodes = tree_to_list(a)
                 for n in ordered_nodes:
-                    print_node(n)
+                    print_node(n, verbose=verbose)
+
+        print('')
 
 
 def main():
+    argparser = argparse.ArgumentParser(description='Process ES profile output.')
+    argparser.add_argument('--verbose', '-v', action='count')
+    args = argparser.parse_args()
+
     try:
         parsed = parse_stdin(sys.stdin.read())
     except ParseException as err:
         print(err.message)
 
-    display(parsed)
+    display(parsed, args.verbose)
 
 
 if __name__ == "__main__":
