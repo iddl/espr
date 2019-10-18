@@ -57,7 +57,7 @@ def print_node(node, verbose=False):
     INDENT = '   '
     depth = node.get('depth', 0)
 
-    print('{}> {} {} ms'.format(
+    print('{}> {} {} us'.format(
         depth*INDENT,
         node.get('type'),
         int(node.get('time_in_nanos'))/1000
