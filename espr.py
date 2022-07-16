@@ -80,10 +80,10 @@ def display(by_shard, verbose=False):
 
         searches = s.get('searches')
         if searches:
-            for s in searches:
+            for search in searches:
                 # don't care about other queries now
                 # just trying this out
-                for q in s['query']:
+                for q in search['query']:
                     ordered_nodes = tree_to_list(q)
                     for n in ordered_nodes:
                         print_node(n, verbose=verbose)
